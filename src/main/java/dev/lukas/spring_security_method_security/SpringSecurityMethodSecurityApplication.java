@@ -100,14 +100,12 @@ public class SpringSecurityMethodSecurityApplication {
                 .orElseThrow();
         switch (event.getAuthorizationDecision()) {
             case null -> throw new IllegalArgumentException("Authorization decision is null");
-            case ExpressionAuthorizationDecision expressionDecision ->
-                    LOG.info("SUCCESS at method level: [{}] -> {}",
-                            authentication.getName(),
-                            expressionDecision.getClass().getSimpleName());
-            case AuthorizationDecision authorizationDecision ->
-                    LOG.info("SUCCESS at route level: [{}] -> {}",
-                            authentication.getName(),
-                            authorizationDecision.getClass().getSimpleName());
+            case ExpressionAuthorizationDecision expressionDecision -> LOG.info("SUCCESS at method level: [{}] -> {}",
+                    authentication.getName(),
+                    expressionDecision.getClass().getSimpleName());
+            case AuthorizationDecision authorizationDecision -> LOG.info("SUCCESS at route level: [{}] -> {}",
+                    authentication.getName(),
+                    authorizationDecision.getClass().getSimpleName());
         }
     }
 
